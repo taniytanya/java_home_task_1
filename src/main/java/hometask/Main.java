@@ -1,8 +1,11 @@
 package hometask;
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.OptionalDouble;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
@@ -22,7 +25,17 @@ public class Main {
         Student student14 = new Student("Dan", "Kruger", "Biology", 4, 2.7, 4.2, 4.8, 4.9);
 
         Student[] students = new Student[]{student1, student2, student3, student4, student5, student6, student7, student8, student9, student10, student11, student12, student13, student14};
+        ArrayList<Student> biologyStudents = new ArrayList<>();
+        ArrayList<Student> mathStudents = new ArrayList<>();
+        ArrayList<Student> englishStudents = new ArrayList<>();
+        ArrayList<Student> philosophyStudents = new ArrayList<>();
+
         double[] allStudentsGradeAvg = new double[students.length];
+        double[] mathStudentsGradeAvg = new double[students.length];
+        double[] biologyStudentsGradeAvg = new double[students.length];
+        double[] englishStudentsGradeAvg = new double[students.length];
+        double[] philosophyStudentsGradeAvg = new double[students.length];
+
 
         for (Student i : students) {
             i.gradeAvg = i.calculateGradePointAverage();
@@ -32,12 +45,69 @@ public class Main {
         for (int i = 0; i < students.length; ++i) {
             allStudentsGradeAvg[i] = students[i].gradeAvg;
         }
+        for (Student i : students) {
+            if (i.faculty == "Biology") {
+                biologyStudents.add(i);
+            } else if (i.faculty == "Math") {
+                mathStudents.add(i);
+            } else if (i.faculty == "English") {
+                englishStudents.add(i);
+            } else if (i.faculty == "Philosophy") {
+                philosophyStudents.add(i);
+            }
+        }
+        for (int i = 0; i < biologyStudents.stream().count(); ++i) {
+            biologyStudentsGradeAvg[i] = biologyStudents.get(i).gradeAvg;
+        }
+        for (int i = 0; i < mathStudents.stream().count(); ++i) {
+            mathStudentsGradeAvg[i] = mathStudents.get(i).gradeAvg;
+        }
+        for (int i = 0; i < englishStudents.stream().count(); ++i) {
+            englishStudentsGradeAvg[i] = englishStudents.get(i).gradeAvg;
+        }
+        for (int i = 0; i < philosophyStudents.stream().count(); ++i) {
+            philosophyStudentsGradeAvg[i] = philosophyStudents.get(i).gradeAvg;
+        }
         OptionalDouble maxAllGrade = Arrays.stream(allStudentsGradeAvg).max();
+        OptionalDouble maxBiologyGrade = Arrays.stream(biologyStudentsGradeAvg).max();
+        OptionalDouble maxMathGrade = Arrays.stream(mathStudentsGradeAvg).max();
+        OptionalDouble maxEnglishGrade = Arrays.stream(englishStudentsGradeAvg).max();
+        OptionalDouble maxPhilosophyGrade = Arrays.stream(philosophyStudentsGradeAvg).max();
+
 
         for (Student i : students) {
             if (Math.abs(i.gradeAvg - maxAllGrade.getAsDouble()) < 0.000000001) {
-                System.out.printf("%s %s is the best student! Her GPA is max in school: %.3f", i.name, i.surname, i.gradeAvg);
+                System.out.printf("%s %s is the best student! Her/His GPA is max in school: %.3f.\n", i.name, i.surname, i.gradeAvg);
             }
+        }
+
+        for (Student i : biologyStudents) {
+
+            if (Math.abs(i.gradeAvg - maxBiologyGrade.getAsDouble()) < 0.000000001) {
+                System.out.printf("%s %s is the best student of faculty %s! Her/His GPA is max in faculty: %.3f.\n", i.name, i.surname, i.faculty, i.gradeAvg);
+            }
+
+        }
+        for (Student i : mathStudents) {
+
+            if (Math.abs(i.gradeAvg - maxMathGrade.getAsDouble()) < 0.000000001) {
+                System.out.printf("%s %s is the best student of faculty %s! Her/His GPA is max in faculty: %.3f.\n", i.name, i.surname, i.faculty, i.gradeAvg);
+            }
+
+        }
+        for (Student i : englishStudents) {
+
+            if (Math.abs(i.gradeAvg - maxEnglishGrade.getAsDouble()) < 0.000000001) {
+                System.out.printf("%s %s is the best student of faculty %s! Her/His GPA is max in faculty: %.3f.\n", i.name, i.surname, i.faculty, i.gradeAvg);
+            }
+
+        }
+        for (Student i : philosophyStudents) {
+
+            if (Math.abs(i.gradeAvg - maxPhilosophyGrade.getAsDouble()) < 0.000000001) {
+                System.out.printf("%s %s is the best student of faculty %s! Her/His GPA is max in faculty: %.3f.\n", i.name, i.surname, i.faculty, i.gradeAvg);
+            }
+
         }
     }
 
