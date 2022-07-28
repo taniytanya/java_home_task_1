@@ -4,8 +4,7 @@ package hometask;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.OptionalDouble;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -86,28 +85,24 @@ public class Main {
             if (Math.abs(i.gradeAvg - maxBiologyGrade.getAsDouble()) < 0.000000001) {
                 System.out.printf("%s %s is the best student of faculty %s! Her/His GPA is max in faculty: %.3f.\n", i.name, i.surname, i.faculty, i.gradeAvg);
             }
-
         }
         for (Student i : mathStudents) {
 
             if (Math.abs(i.gradeAvg - maxMathGrade.getAsDouble()) < 0.000000001) {
                 System.out.printf("%s %s is the best student of faculty %s! Her/His GPA is max in faculty: %.3f.\n", i.name, i.surname, i.faculty, i.gradeAvg);
             }
-
         }
         for (Student i : englishStudents) {
 
             if (Math.abs(i.gradeAvg - maxEnglishGrade.getAsDouble()) < 0.000000001) {
                 System.out.printf("%s %s is the best student of faculty %s! Her/His GPA is max in faculty: %.3f.\n", i.name, i.surname, i.faculty, i.gradeAvg);
             }
-
         }
         for (Student i : philosophyStudents) {
 
             if (Math.abs(i.gradeAvg - maxPhilosophyGrade.getAsDouble()) < 0.000000001) {
                 System.out.printf("%s %s is the best student of faculty %s! Her/His GPA is max in faculty: %.3f.\n", i.name, i.surname, i.faculty, i.gradeAvg);
             }
-
         }
     }
 
